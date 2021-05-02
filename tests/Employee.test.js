@@ -1,6 +1,6 @@
 const { it } = require("@jest/globals")
 const { describe } = require("yargs")
-const Employee = require("../employee")
+const Employee = require("../lib/employee")
 
 describe("Employee Class", () => {
     describe("test", () => {
