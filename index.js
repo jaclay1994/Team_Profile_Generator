@@ -5,6 +5,7 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 // const Engineer = require("./lib/engineer")
 const Employee = require("./lib/employee");
+const Manager = require("./lib/manager");
 // const util = require("util");
 // const { writeFileSync } = require("node:fs");
 // const Engineer = require("./lib/engineer");
@@ -20,12 +21,12 @@ async function createProfile() {
     return inquirer.prompt([
         {
             type: "input",
-            name: "start",
+            name: "name",
             message: "Welcome to the TP Generator! What is your team manager's name?"
         },
         {
             type: "input",
-            name: "employeeId",
+            name: "id",
             message: "Enter manager's employee ID."
         },
         {
@@ -38,7 +39,13 @@ async function createProfile() {
             name: "officeNumber",
             message: "Enter manager's office number."
         }
-    ]).then(function mainMenu() {
+    ]).then(function (answers) {
+        console.log(answers)
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+        managerHTML(manager)
+        html = html.concat(managerHTML(manager))
+
+    }).then(function mainMenu() {
         inquirer.prompt([
             {
                 type: "list",
@@ -77,7 +84,7 @@ async function createProfile() {
                             }
                         ]).then(function (answers) {
                             console.log(answers)
-                            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github)
+                            const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github, answers.officeNumber)
                             console.log(engineer)
                             engineerHTML(engineer)
                             html = html.concat(engineerHTML(engineer))
@@ -93,17 +100,17 @@ async function createProfile() {
                         inquirer.prompt([
                             {
                                 type: "input",
-                                name: "internname",
+                                name: "name",
                                 message: "What is the intern's name?"
                             },
                             {
                                 type: "input",
-                                name: "internemployeeId",
+                                name: "id",
                                 message: "Enter intern's employee ID."
                             },
                             {
                                 type: "input",
-                                name: "internemail",
+                                name: "email",
                                 message: "Enter intern's email address."
                             },
                             {
@@ -112,7 +119,7 @@ async function createProfile() {
                                 message: "Enter intern's school."
                             }
                         ]).then(function (answers) {
-                            const intern = new Intern(answers.internname, answers.internemployeeid, answers.internemail, answers.school)
+                            const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
                             console.log(intern)
                             engineerHTML(intern)
                             html = html.concat(internHTML(intern))
@@ -175,6 +182,26 @@ function createHTML() {
     `
 }
 
+function managerHTML(manager) {
+    return `
+    <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">${manager.name}</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the                                card's
+                             content.</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Employee ID: ${manager.id}</li>
+                        <li class="list-group-item">Email: ${manager.email}</li>
+                        <li class="list-group-item">Office #: ${manager.officeNumber}</li>
+                    </ul>
+                    </div>
+                </div>
+    `
+}
+
 function engineerHTML(engineer) {
     // const engineers = new Engineer(id, name, email, github, getRole());
     // cont()
@@ -197,21 +224,21 @@ function engineerHTML(engineer) {
     `;
 }
 
-function internHTML(interns) {
+function internHTML(intern) {
     return `
     <div class="col-sm-4">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">${interns.start}</h5>
+                        <h5 class="card-title">${intern.name}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of
                             the                                card's
                              content.</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Employee ID: ${interns.employeeId}</li>
-                        <li class="list-group-item">Email: ${interns.email}</li>
-                        <li class="list-group-item">Office #: ${interns.officeNumber}</li>
-                        <li class="list-group-item">Office #: ${interns.officeNumber}</li>                        </ul>
+                        <li class="list-group-item">Employee ID: ${intern.id}</li>
+                        <li class="list-group-item">Email: ${intern.email}</li>
+                        <li class="list-group-item">School #: ${intern.school}</li>
+                    </ul>
                     </div>
                 </div>
     `
