@@ -1,35 +1,12 @@
-const { it } = require("@jest/globals")
-const { describe } = require("yargs")
-const Employee = require("../lib/employee")
+const { it, expect } = require("@jest/globals")
+const { describe, string } = require("yargs")
+const Employee = require("../lib/manager")
 
-describe("Employee Class", () => {
-    describe("test", () => {
-        it("testMethod", () => {
-            const employee = new Employee
-        })
-    })
-})
-
-describe("Manager Class", () => {
-    describe("test", () => {
-        it("testMethod", () => {
-            const employee = new Employee
-        })
-    })
-})
-
-describe("Engineer Class", () => {
-    describe("test", () => {
-        it("testMethod", () => {
-            const employee = new Employee
-        })
-    })
-})
-
-describe("Intern Class", () => {
-    describe("test", () => {
-        it("testMethod", () => {
-            const employee = new Employee
+test("Employee Class", () => {
+    describe("Object Define Test", () => {
+        it("Defintion Test", () => {
+            const employee = new Employee("Anna", 789, "employ@email.com")
+            expect(employee.name).toEqual("Anna")
         })
     })
 })
