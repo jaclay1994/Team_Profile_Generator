@@ -12,9 +12,9 @@ Currently, the project is in development. The inquirer prompts are created and e
 
 This application now has the ability to generate a manager profile, engineer and intern card for the a team porfolio website. 
 
-## Video
+## Demo Video Link
 
-![Demo](TPGDemo.webm)
+https://youtu.be/L2Yh0xZg_IY
 
 ## License 
     # MIT License
