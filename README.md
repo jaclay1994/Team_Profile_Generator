@@ -6,10 +6,11 @@ This application creates an team employee profile. Through the use of node.js, a
 able to enter in employee's information to create an webpage that displays their information.
 
 ## Progress
-Currently, the project is in development. The inquirer prompts are created and enough HTML is written to produce a file
-that is able to represent a mvp. However, using an object class is currently being researched and also passing the values
-to the application seems to have created a few errors. Once the flow is properly assessed, the application should be fully 
-functional.
+Currently, the project is in development. The inquirer prompts are created and enough HTML is written to produce a file that is able to represent a mvp. However, using an object class is currently being researched and also passing the values to the application seems to have created a few errors. Once the flow is properly assessed, the application should be fully functional.
+
+#Update
+
+This application now has the ability to generate a manager profile, engineer and intern card for the a team porfolio website. 
 
 ## License 
     # MIT License
